@@ -34,12 +34,24 @@ console.log(items);
 console.log(items[1]);
 items[1].textContent='Hello 2';
 items[2].style.backgroundColor='green';
+
 /*
 for(let i=0;i<items.length;i++)
 {
     items[i].style.fontWeight='bold';
 }
 */
+
 Array.from(items).forEach(function(item){
     item.style.fontWeight='bold';
 });
+
+let li=document.getElementsByTagName('li');
+console.log(li);
+console.log(li[1]);
+/*
+if we add a new li tag without the same class name
+and we did the previous operations of getElementsByClassName
+nothing will happen but if we did the same thing with getElementsByTagName
+changes will be seen in the new li tag also
+*/
