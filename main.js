@@ -55,6 +55,7 @@ const msg=document.querySelector('.msg');
 const userList=document.querySelector('#users');
 
 myform.addEventListener('submit',onsubmit);
+/*
 let formData=[];
 
 function onsubmit(e){
@@ -98,3 +99,37 @@ function dispData(){
         }
 }
 dispData();
+*/
+
+//Another way solving the task
+document.addEventListener('DOMContentLoaded',display);
+function display(){
+    Object.keys(localStorage).forEach(key=>{
+        let details=JSON.parse(localStorage.getItem(key));
+        userList.innerHTML +=`<li>${details.userName} : ${details.userEmail}</li>`;
+    })
+}
+
+function onsubmit(e){
+    e.preventDefault();
+    if(nameInput.value=='' || emailInput.value==''){
+        msg.classList.add('error');
+        msg.innerHTML='Please enter all fields';
+
+        setTimeout(()=>msg.remove(),3000);
+    }
+    else{
+        const obj={
+            userName:nameInput.value,
+            userEmail:emailInput.value
+        }
+        localStorage.setItem(obj.userEmail,JSON.stringify(obj));
+        addUsers(obj);
+        nameInput.value='';
+        emailInput.value='';
+    }
+}
+function addUsers(obj){
+    const childHTML=`<li>${obj.userName}:${obj.userEmail}</li>`
+    userList.innerHTML=userList.innerHTML+childHTML;
+}
