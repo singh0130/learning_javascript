@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded',display);
 function display(){
     Object.keys(localStorage).forEach(key=>{
         let details=JSON.parse(localStorage.getItem(key));
-        userList.innerHTML +=`<li>${details.userName} : ${details.userEmail}</li>`;
+        userList.innerHTML +=`<li id=${details.userEmail}>${details.userName}:${details.userEmail}<button onclick=deleteUser('${details.userEmail}')>Delete</button>
+        <button onclick=editUser('${details.userName}','${details.userEmail}')>Edit</button></li>`;
     })
 }
 
@@ -130,6 +131,33 @@ function onsubmit(e){
     }
 }
 function addUsers(obj){
-    const childHTML=`<li>${obj.userName}:${obj.userEmail}</li>`
+    const userList=document.querySelector('#users');
+    //if(localStorage.getItem(obj.userEmail)!==null){
+        //removeUserFromScreen(obj.userEmail);
+    //}
+    const childHTML = `<li id=${obj.userEmail}> ${obj.userName} - ${obj.userEmail}
+                                        <button onclick=deleteUser('${obj.userEmail}')> Delete User </button>
+                                        <button onclick=editUserDetails('${obj.userEmail}','${obj.userName}')>Edit User </button>
+                                     </li>`
+    //const childHTML=`<li id=${obj.userEmail}>${obj.userName}:${obj.userEmail}<button onclick=deleteUser('${obj.userEmail}')>Delete</button>
+    //<button onclick=editUser('${obj.userName}','${obj.userEmail}')>Edit</button></li>`
     userList.innerHTML=userList.innerHTML+childHTML;
+}
+
+function editUser(name,email){
+    nameInput.value=name;
+    emailInput.value=email;
+    deleteUser(email);
+}
+
+function deleteUser(email){
+    localStorage.removeItem(email);
+    removeUserFromScreen(email);
+}
+
+function removeUserFromScreen(email){
+    const childNodeToBeDeleted=document.getElementById(email);
+    if(childNodeToBeDeleted){
+        userList.removeChild(childNodeToBeDeleted);
+    }
 }
