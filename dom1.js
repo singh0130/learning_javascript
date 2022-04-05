@@ -29,12 +29,12 @@ function addItem(e){
     //Append text node
     deleteBtn.appendChild(document.createTextNode('X'));
     //Add edit button
-    let editBtn=document.createElement('button');
-    editBtn.className='btn btn-dark float-right edit';
-    editBtn.appendChild(document.createTextNode('EDIT'));
+    //let editBtn=document.createElement('button');
+    //editBtn.className='btn btn-dark float-right edit';
+    //editBtn.appendChild(document.createTextNode('EDIT'));
     //Append button to li
     li.appendChild(deleteBtn);
-    li.appendChild(editBtn);
+    //li.appendChild(editBtn);
 
     //Append li to list
     itemList.appendChild(li);
@@ -59,7 +59,8 @@ function filterItems(e){
     //convert to an array
     Array.from(items).forEach(function(item){
         let itemName=item.firstChild.textContent;
-        if(itemName.toLowerCase().indexOf(text)!=-1){
+        let itemDesc=item.children[0].textContent;
+        if(itemName.toLowerCase().indexOf(text)!=-1 || itemDesc.toLowerCase().indexOf(text)!=-1){
             item.style.display='block';
         }
         else{
