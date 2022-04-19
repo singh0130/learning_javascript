@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker App</title>
+</head>
+<body>
+    <form id="my-form">
+        <label for="amount">Enter Expense Amount</label>
+        <input type="text" id="amount">
+        <br><br>
+        <label for="disc">Enter Description</label>
+        <input type="text" id="disc">
+        <br><br>
+        <label for="category">Choose a category</label>
+        <select name="category" id="category">
+            <option value="movie">Movie</option>
+            <option value="vacation">vacation</option>
+            <option value="Beer">Beer</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Add Expense">
+        <div class="msg"></div>
+    </form>
+    <ul id="users"></ul>
+    <script src="ExpenseTracker3HourTest.js"></script>
+</body>
+</html>
