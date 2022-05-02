@@ -104,11 +104,21 @@ dispData();
 //Another way solving the task
 document.addEventListener('DOMContentLoaded',display);
 function display(){
+    /*
     Object.keys(localStorage).forEach(key=>{
         let details=JSON.parse(localStorage.getItem(key));
         userList.innerHTML +=`<li id=${details.userEmail}>${details.userName}:${details.userEmail}<button onclick=deleteUser('${details.userEmail}')>Delete</button>
         <button onclick=editUser('${details.userName}','${details.userEmail}')>Edit</button></li>`;
     })
+    */
+   axios.get('https://crudcrud.com/api/c2e5737992ce488498d6bebf3feb7858/appointmentData')
+   .then((response)=>{
+       console.log(response);
+       for(let i=0;i<response.data.length;i++){
+           addUsers(response.data[i]);
+       }
+   })
+   .catch((err)=> console.log(err));
 }
 
 function onsubmit(e){
