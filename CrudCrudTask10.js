@@ -153,14 +153,14 @@ function addUsers(obj){
     //}
     const childHTML = `<li id=${obj._id}> ${obj.userName} - ${obj.userEmail}
                                         <button onclick=deleteUser('${obj._id}')> Delete User </button>
-                                        <button onclick=editUser('${obj.userName}','${obj.userEmail}')>Edit User </button>
+                                        <button onclick=editUser('${obj.userName}','${obj.userEmail}','${obj._id}')>Edit User </button>
                                      </li>`
     //const childHTML=`<li id=${obj.userEmail}>${obj.userName}:${obj.userEmail}<button onclick=deleteUser('${obj.userEmail}')>Delete</button>
     //<button onclick=editUser('${obj.userName}','${obj.userEmail}')>Edit</button></li>`
     userList.innerHTML=userList.innerHTML+childHTML;
 }
 
-function editUser(name,email){
+function editUser(name,email,id){
     nameInput.value=name;
     emailInput.value=email;
     deleteUser(id);
