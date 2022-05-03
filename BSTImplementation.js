@@ -11,7 +11,7 @@ class BST{
         this.root=null;
     }
     insert(value){
-        const newNode=Node(value);
+        const newNode=new Node(value);
         if(this.root===null){
             this.root=newNode;
         }
@@ -19,7 +19,7 @@ class BST{
             this.insertNode(this.root,newNode);
         }
     }
-    inserNode(node,newNode){
+    insertNode(node,newNode){
         if(newNode.value<node.value){
             if(node.left===null){
                 node.left=newNode;
@@ -51,4 +51,47 @@ class BST{
             return node;
         }
     }
+    preorderRecur(node){
+        if(node!==null)
+        {
+            console.log(node.value);
+            this.preorderRecur(node.left);
+            this.preorderRecur(node.right);
+        }
+    }
+    getRootNode(){
+        return this.root;
+    }
+    preorderIterative(node){
+        if(node==null){
+            return;
+        }
+        let stack=[];
+        stack.push(node);
+        while(stack.length>0){
+            let topnode=stack[stack.length-1];
+            console.log(topnode.value);
+            stack.pop();
+            if(topnode.right!=null){
+                stack.push(topnode.right);
+            }
+            if(topnode.left!=null){
+                stack.push(topnode.left);
+            }
+        }
+    }
 }
+
+const bst =new BST();
+bst.insert(1);
+bst.insert(2);
+bst.insert(3);
+bst.insert(4);
+bst.insert(5);
+bst.insert(6);
+bst.insert(7);
+bst.insert(8);
+const root=bst.getRootNode();
+bst.preorderRecur(root);
+console.log('------------------------------');
+bst.preorderIterative(root);
